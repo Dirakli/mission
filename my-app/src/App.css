@@ -1,0 +1,13 @@
+
+.App {
+    width: 1240px;
+    margin: 0 auto;
+}
+
+.title {
+    color: red
+}
+
+.message {
+    color: blue;
+}

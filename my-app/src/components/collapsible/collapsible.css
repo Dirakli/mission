@@ -1,0 +1,11 @@
+
+
+.collapsible-content {
+    opacity: 0;
+    transition: opacity 300ms ease-out;
+}
+
+.collapsible-content.opened {
+    height: 100%;
+    opacity: 1;
+}

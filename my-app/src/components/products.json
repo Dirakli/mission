@@ -1,0 +1,26 @@
+[
+    {
+        "category": "ხილეულობა",
+        "name": "ვაშლი",
+        "price": 1,
+        "stock": true
+    },
+    {
+        "category": "ხილეულობა",
+        "name": "ქლიავი",
+        "price": 3,
+        "stock": false
+    },
+    {
+        "category": "ბოსტნეული",
+        "name": "პომიდორი",
+        "price": 3,
+        "stock": true
+    },
+    {
+        "category": "ბოსტნეული",
+        "name": "კომბოსტო",
+        "price": 2,
+        "stock": false
+    }
+]
