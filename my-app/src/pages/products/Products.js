@@ -50,7 +50,7 @@ export const Products = () => {
             </Form>
             <hr />
             <Collapsible closedTitle="მაჩვენე პროდუქცია" openedTitle="დამალე პროდუქცია" >
-            {renderProducts()}
+            <div className='d-flex flex-wrap justify-content-between' >{renderProducts()}</div>
             </Collapsible>
         </div>
     )
