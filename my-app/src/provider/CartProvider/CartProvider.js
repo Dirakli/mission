@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { Products } from '../../pages/products/Products';
 
 export const CartContext = createContext({
@@ -25,6 +25,7 @@ export const CartProvider = ({ children }) => {
       } else {
         newItem = {
           product: product.price,
+          name: product.name,
           qty: 1,
         };
       }
@@ -89,3 +90,12 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
+export const useCart = () => {
+  const cart = useContext(CartContext);
+  if (!cart) {
+    throw SyntaxError('CartProvider is not defined');
+  }
+
+  return cart;
+}

@@ -1,18 +1,23 @@
-import { useContext } from 'react';
-import { CartContext } from '../../provider/CartProvider';
+
+import { useCart } from '../../provider/CartProvider';
+
+import { Link, NavLink } from 'react-router-dom';
 
 import './header.css';
 
 export const Header = (props) => {
-  const cart = useContext(CartContext);
+  const {cart} = useCart();
   console.log('__CartContext__', cart);
   return (
     <header>
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
+            <Link className='navbar-brand' to='/' >
             Navbar
+            </Link>
           </a>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -32,17 +37,17 @@ export const Header = (props) => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">
-                  Link
-                </a>
+                <NavLink className="nav-link" to="/products">
+                  Products
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">
+                <Link className="nav-link" to="/shopping-cart">
                   <span className="font-weight-bold">CART TOTAL </span> :
                   <span>
                     {cart.total === 0 ? 'empty' : `💰${Math.round(cart.total)}`}
                   </span>
-                </a>
+                </Link>
               </li>
             </ul>
             <form className="d-flex" role="search">
