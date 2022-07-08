@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useContext, useState } from 'react';
 import { CartContext } from '../../provider/CartProvider';
 import { Button, Alert } from '../../atoms';
@@ -12,7 +13,6 @@ export const ProductsItem = ({ product }) => {
 
   const [outOfStock, setOutOfStock] = useState(false);
 
-  const isInCart = product.id in cartItems;
 
   const handleAddToCart = () => {
     if(product.stock) {
@@ -20,7 +20,13 @@ export const ProductsItem = ({ product }) => {
     }else {
         setOutOfStock(true);
     }
+  };
+
+  if(!product) {
+    return null;
   }
+
+  const isInCart = product.id in cartItems;
 
   return (
     <div className="card mb-1 productItem--card">
@@ -59,3 +65,7 @@ export const ProductsItem = ({ product }) => {
     </div>
   );
 };
+
+ProductsItem.propTypes = {
+  product: PropTypes.object.isRequired
+}

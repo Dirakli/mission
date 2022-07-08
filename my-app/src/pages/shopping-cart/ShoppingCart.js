@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ProductTable } from '../../components/table';
 
 export const ShoppingCart = (props) => {
-  const [value, setValue] = useState();
 
   // useEffect(() => {
   //     console.log("shopping cart")
@@ -23,7 +22,7 @@ export const ShoppingCart = (props) => {
 
   return (
     <div className="row">
-      <h2 onClick={() => setValue(Math.random())}>Shopping Cart ✔🧨</h2>
+      <h2>Shopping Cart ✔🧨</h2>
       <div className="col-12">
         <ProductTable />
       </div>

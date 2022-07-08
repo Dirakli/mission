@@ -1,27 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import debounce from 'lodash/debounce';
 import { ProductsItem } from './ProductItem';
 import { Button, TextInput, Form } from '../../atoms';
 import productsData from '../../components/products.json';
 import { Collapsible } from '../../components/collapsible';
+import { useLocalStorage, useDebounce } from '../../hooks';
+import { filter } from 'lodash';
 
 
 export const Products = () => {
     const [inStockOnly, setInStockOnly] = useState(false);
-    const [filterTerm, setFilterTerm] = useState('');
+    const [result, setResult] = useState(productsData.slice());
+    const [filterTerm, setFilterTerm] = useLocalStorage('super--app: shopping-cart','');
+    const pausedSearch = useDebounce(filterTerm, 4000)
+
+    useEffect(() => {
+        if (pausedSearch) {
+            const data = productsData.filter((el) => el.name.toLowerCase().includes(pausedSearch.toLowerCase()));
+            setResult(data)
+        } else {
+            setResult(productsData.slice());
+        }
+    }, [pausedSearch, productsData]);
 
     const renderProducts = () => {
-        let data = productsData.slice();
+        let data = result.slice();
         if(inStockOnly) {
-            data = data.filter((item) => item.stock);
+            data = result.filter((item) => item.stock);
         }
-
-        if(filterTerm) {
-            console.log('TYPING')
-            data = data.filter((el) => el.name.includes(filterTerm));
-        }
-         return data.map((item, index) => {
+         return result.map((item, index) => {
             return <ProductsItem product={item} key={index} />
         }); 
     };
